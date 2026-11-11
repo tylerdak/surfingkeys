@@ -269,9 +269,9 @@ describe('start', () => {
             expect(chrome.runtime.onMessage.listeners).toHaveLength(1);
         });
 
-        it('registers the uninstall survey url', () => {
+        it('does not open a maintainer page when uninstalled', () => {
             const {chrome} = bootstrap();
-            expect(chrome.runtime.setUninstallURL).toHaveBeenCalledWith(expect.stringContaining('http'));
+            expect(chrome.runtime.setUninstallURL).not.toHaveBeenCalled();
         });
 
         it('wires up the user script world on MV3', () => {

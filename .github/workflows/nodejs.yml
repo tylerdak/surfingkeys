@@ -21,9 +21,9 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.node-version }}
-    - name: npm install and build
+    - name: Install dependencies and build
       run: |
-        npm install
+        npm ci
         npm run build
       env:
         CI: true

@@ -1442,24 +1442,18 @@ function SearchEngine(omnibar, front) {
         const searchEngineIcon = localStorage.getItem(searchEngineIconStorageKey);
         if (searchEngineIcon) {
             self.aliases[message.alias].prompt = `<img src="${searchEngineIcon}" alt="${message.prompt}" style="width: 20px;" />`;
-        } else if (front.topOrigin.startsWith("http")){
-            let iconUrl;
-            if (message.options?.favicon_url) {
-              iconUrl = new URL(message.options.favicon_url);
-            } else {
-              iconUrl = new URL(message.url);
-              iconUrl.pathname = "favicon.ico";
-              iconUrl.search = "";
-              iconUrl.hash = "";
+        } else if (front.topOrigin.startsWith("http") && message.options?.favicon_url) {
+            const iconUrl = new URL(message.options.favicon_url);
+            if (iconUrl.protocol === "http:" || iconUrl.protocol === "https:") {
+                RUNTIME('requestImage', {
+                    url: iconUrl.href,
+                }, function(response) {
+                    if (response) {
+                        localStorage.setItem(searchEngineIconStorageKey, response.text);
+                        self.aliases[message.alias].prompt = `<img src="${response.text}" alt="${message.prompt}" style="width: 20px;" />`;
+                    }
+                });
             }
-            RUNTIME('requestImage', {
-                url: iconUrl.href,
-            }, function(response) {
-                if (response) {
-                    localStorage.setItem(searchEngineIconStorageKey, response.text);
-                    self.aliases[message.alias].prompt = `<img src="${response.text}" alt="${message.prompt}" style="width: 20px;" />`;
-                }
-            });
         }
     };
     front._actions['removeSearchAlias'] = function (message) {

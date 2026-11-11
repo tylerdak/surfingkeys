@@ -1,6 +1,6 @@
 # Surfingkeys - Expand your browser with JavaScript and keyboard.
 
-[![Node CI](https://github.com/brookhong/Surfingkeys/workflows/Node%20CI/badge.svg?branch=master)](https://github.com/brookhong/Surfingkeys/actions?query=workflow%3A%22Node+CI%22+branch%3Amaster)
+[![Node CI](https://github.com/tylerdak/surfingkeys/workflows/Node%20CI/badge.svg?branch=master)](https://github.com/tylerdak/surfingkeys/actions?query=workflow%3A%22Node+CI%22+branch%3Amaster)
 
 Surfingkeys is a browser extension (for Google Chrome, Chromium-based browsers, Firefox, and Safari) that provides keyboard-based navigation and control of the web in the spirit of the VIM editor. But it's not just for VIM users; it's for anyone who needs more shortcuts for their own functions.
 
@@ -14,12 +14,20 @@ Surfingkeys does its best to make full use of the keyboard for web browsing, but
 
 ## Installation
 
-<img src="https://raw.githubusercontent.com/brookhong/Surfingkeys/master/sk.svg" width="384">
+<img src="https://raw.githubusercontent.com/tylerdak/surfingkeys/master/sk.svg" width="384">
 
-* [Surfingkeys - Chrome Web Store](https://chrome.google.com/webstore/detail/surfingkeys/gfbliohnnapiefjpjlpjnehglfpaknnc) for Google Chrome, Chromium based browsers
-* [Surfingkeys – Get this Extension for 🦊 Firefox](https://addons.mozilla.org/en-US/firefox/addon/surfingkeys_ff/) for Firefox
-* [Surfingkeys - Microsoft Edge Addons](https://microsoftedge.microsoft.com/addons/detail/kgnghhfkloifoabeaobjkgagcecbnppg) for Microsoft Edge
-* [Surfingkeys on the Mac App Store](https://apps.apple.com/us/app/surfingkeys/id1609752330) for Safari, works on both macOS and iOS, except that on iOS an external keyboard must be connected to your device. There is one exception of the [special feature designed for iOS devices](https://youtu.be/xaTf2booQkQ) -- `Search selected with`.
+### Install this fork in Chromium
+
+Download the ZIP from [this fork's Releases](https://github.com/tylerdak/surfingkeys/releases), extract it to a folder that will stay on your machine, then open `chrome://extensions`, enable **Developer mode**, and choose **Load unpacked**. Select the extracted folder. Brave and Edge have the same developer-mode flow at `brave://extensions` and `edge://extensions`.
+
+To build from source, run `npm ci` and `npm run build:prod`, then load `dist/production/chrome`. The ZIP contains the unpacked extension files; it is not a Chrome Web Store package. The [Chromium ZIP workflow](https://github.com/tylerdak/surfingkeys/actions/workflows/chromium-zip.yml) tests and builds a workflow artifact for branch builds and attaches the ZIP to tagged GitHub Releases. Release tags must match the version in `package.json`.
+
+The Firefox and Safari links below are the upstream project's distributions; this fork currently publishes a custom Chromium build only.
+
+* [Surfingkeys for Firefox](https://addons.mozilla.org/en-US/firefox/addon/surfingkeys_ff/)
+* [Surfingkeys for Safari](https://apps.apple.com/us/app/surfingkeys/id1609752330) (macOS and iOS; iOS requires an external keyboard for most features)
+
+See [Privacy and network behavior](docs/PRIVACY.md) for this fork's outbound-request policy and the security issues reviewed during the fork setup.
 
 ### Feature availability
 | Features \ Browsers | Chromium family (above 45) | Firefox (above 57) | Safari (above 15) |
@@ -95,7 +103,7 @@ Surfingkeys does its best to make full use of the keyboard for web browsing, but
 
 ## Quick start
 
-After you install the extension from [Chrome Web Store](https://chrome.google.com/webstore/detail/surfingkeys/gfbliohnnapiefjpjlpjnehglfpaknnc) or [Firefox Add-ons](https://addons.mozilla.org/en-US/firefox/addon/surfingkeys_ff/), open a site you'd like to browse. Then press `?` or `u` to take a quick look at the default mappings first. Press `Esc` to hide the usage popover.
+After loading the custom Chromium build or installing the upstream Firefox version, open a site you'd like to browse. Then press `?` or `u` to take a quick look at the default mappings first. Press `Esc` to hide the usage popover.
 
 Try some mappings described in the usage popover. For example, press `e` to scroll a page up, `d` to scroll a page down, `;e` to open settings page.
 

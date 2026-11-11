@@ -429,7 +429,7 @@ const Front = (function() {
                 }
             }).join("");
 
-            help_groups += `<p style='float:right; width:100%; text-align:right'><a href='https://github.com/brookhong/surfingkeys' target='_blank' style='color:#0095dd'>${locale("More help")}</a></p>`;
+            help_groups += `<p style='float:right; width:100%; text-align:right'><a href='https://github.com/tylerdak/surfingkeys' target='_blank' style='color:#0095dd'>${locale("More help")}</a></p>`;
             cb(help_groups);
         });
     }
